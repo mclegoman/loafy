@@ -18,6 +18,9 @@ import net.minecraft.item.ItemUsageContext;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.TypedActionResult;
+import net.minecraft.util.UseAction;
+import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -32,6 +35,26 @@ public abstract class ItemStackMixin {
 	@Inject(at = @At("HEAD"), method = "getComponents", cancellable = true)
 	public void loafy$getComponents(CallbackInfoReturnable<ComponentMap> cir) {
 		if (!this.isOf(LoafyConfig.getItemStack().getItem())) cir.setReturnValue(!this.isEmpty() ? LoafyConfig.getItemStack().getItem().getDefaultStack().getComponents() : ComponentMap.EMPTY);
+	}
+	@Inject(at = @At("HEAD"), method = "use", cancellable = true)
+	public void loafy$use(World world, PlayerEntity user, Hand hand, CallbackInfoReturnable<TypedActionResult<ItemStack>> cir) {
+		if (!this.isOf(LoafyConfig.getItemStack().getItem())) cir.setReturnValue(LoafyConfig.getItemStack().getItem().use(world, user, hand));
+	}
+	@Inject(at = @At("HEAD"), method = "getUseAction", cancellable = true)
+	public void loafy$getUseAction(CallbackInfoReturnable<UseAction> cir) {
+		if (!this.isOf(LoafyConfig.getItemStack().getItem())) cir.setReturnValue(LoafyConfig.getItemStack().getItem().getUseAction((ItemStack) (Object) this));
+	}
+	@Inject(at = @At("HEAD"), method = "isUsedOnRelease", cancellable = true)
+	public void loafy$isUsedOnRelease(CallbackInfoReturnable<Boolean> cir) {
+		if (!this.isOf(LoafyConfig.getItemStack().getItem())) cir.setReturnValue(LoafyConfig.getItemStack().getItem().isUsedOnRelease((ItemStack) (Object) this));
+	}
+	@Inject(at = @At("HEAD"), method = "getMaxUseTime", cancellable = true)
+	public void loafy$getMaxUseTime(LivingEntity user, CallbackInfoReturnable<Integer> cir) {
+		if (!this.isOf(LoafyConfig.getItemStack().getItem())) cir.setReturnValue(LoafyConfig.getItemStack().getItem().getMaxUseTime((ItemStack) (Object) this, user));
+	}
+	@Inject(at = @At("HEAD"), method = "finishUsing", cancellable = true)
+	public void loafy$finishUsing(World world, LivingEntity user, CallbackInfoReturnable<ItemStack> cir) {
+		if (!this.isOf(LoafyConfig.getItemStack().getItem())) cir.setReturnValue(LoafyConfig.getItemStack().getItem().finishUsing((ItemStack) (Object) this, world, user));
 	}
 	@Inject(at = @At("HEAD"), method = "useOnBlock", cancellable = true)
 	public void loafy$useOnBlock(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir) {
