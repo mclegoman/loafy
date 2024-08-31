@@ -26,7 +26,7 @@ public class LoafyConfig {
 			create();
 			config = SimpleConfig.of(id).provider(configProvider).request();
 			assign();
-			item = Registries.ITEM.get(Identifier.of(itemId)).getDefaultStack();
+			item = Registries.ITEM.get(new Identifier(itemId)).getDefaultStack();
 		} catch (Exception error) {
 			System.out.println(error.getLocalizedMessage());
 		}
