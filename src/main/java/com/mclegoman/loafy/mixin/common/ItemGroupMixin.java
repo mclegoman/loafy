@@ -24,7 +24,7 @@ public abstract class ItemGroupMixin {
 	@Inject(at = @At("HEAD"), method = "add", cancellable = true)
 	public void loafy$add(ItemStack stack, ItemGroup.StackVisibility visibility, CallbackInfo ci) {
 		// If the category already has the stack, we just silently fail instead of crashing the game.
-		// This happens because of enchantment books, horns, etc, have custom components that we just override with bread.
+		// This happens because of enchantment, books, horns, etc, have custom components that we just override with bread.
 		if (this.parentTabStacks.contains(stack) && visibility != ItemGroup.StackVisibility.SEARCH_TAB_ONLY) ci.cancel();
 	}
 }

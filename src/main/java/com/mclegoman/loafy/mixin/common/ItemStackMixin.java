@@ -7,6 +7,7 @@
 
 package com.mclegoman.loafy.mixin.common;
 
+import com.mclegoman.loafy.config.LoafyConfig;
 import net.minecraft.component.ComponentMap;
 import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.LivingEntity;
@@ -14,7 +15,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUsageContext;
-import net.minecraft.item.Items;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -29,20 +29,20 @@ public abstract class ItemStackMixin {
 	@Shadow public abstract ComponentMap getComponents();
 	@Shadow public abstract boolean isOf(Item item);
 	@Shadow public abstract boolean isEmpty();
-	@Inject(at = @At("RETURN"), method = "getComponents", cancellable = true)
+	@Inject(at = @At("HEAD"), method = "getComponents", cancellable = true)
 	public void loafy$getComponents(CallbackInfoReturnable<ComponentMap> cir) {
-		if (!this.isOf(Items.BREAD)) cir.setReturnValue(!this.isEmpty() ? Items.BREAD.getDefaultStack().getComponents() : ComponentMap.EMPTY);
+		if (!this.isOf(LoafyConfig.item.getItem())) cir.setReturnValue(!this.isEmpty() ? LoafyConfig.item.getItem().getDefaultStack().getComponents() : ComponentMap.EMPTY);
 	}
-	@Inject(at = @At("RETURN"), method = "useOnBlock", cancellable = true)
+	@Inject(at = @At("HEAD"), method = "useOnBlock", cancellable = true)
 	public void loafy$useOnBlock(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir) {
-		if (!this.isOf(Items.BREAD)) cir.setReturnValue(ActionResult.PASS);
+		if (!this.isOf(LoafyConfig.item.getItem())) cir.setReturnValue(LoafyConfig.item.getItem().useOnBlock(context));
 	}
-	@Inject(at = @At("RETURN"), method = "useOnEntity", cancellable = true)
+	@Inject(at = @At("HEAD"), method = "useOnEntity", cancellable = true)
 	public void loafy$useOnEntity(PlayerEntity user, LivingEntity entity, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
-		if (!this.isOf(Items.BREAD)) cir.setReturnValue(ActionResult.PASS);
+		if (!this.isOf(LoafyConfig.item.getItem())) cir.setReturnValue(LoafyConfig.item.getItem().useOnEntity((ItemStack) (Object) this, user, entity, hand));
 	}
-	@Inject(at = @At("RETURN"), method = "getName", cancellable = true)
+	@Inject(at = @At("HEAD"), method = "getName", cancellable = true)
 	public void loafy$getName(CallbackInfoReturnable<Text> cir) {
-		if (!this.isOf(Items.BREAD) && this.getComponents().get(DataComponentTypes.CUSTOM_NAME) == null) cir.setReturnValue(Items.BREAD.getName());
+		if (!this.isOf(LoafyConfig.item.getItem()) && this.getComponents().get(DataComponentTypes.CUSTOM_NAME) == null) cir.setReturnValue(LoafyConfig.item.getItem().getName());
 	}
 }

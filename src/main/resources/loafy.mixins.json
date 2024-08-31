@@ -4,12 +4,15 @@
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
 		"common.ItemGroupMixin",
-		"common.ItemStackMixin"
+		"common.ItemStackMixin",
+		"common.RegistriesMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
 	},
 	"client": [
-		"client.ItemModelsMixin"
+		"client.ItemModelsMixin",
+		"client.MinecraftClientMixin",
+		"common.RegistriesMixin"
 	]
 }
