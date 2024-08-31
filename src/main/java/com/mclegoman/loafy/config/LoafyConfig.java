@@ -8,8 +8,8 @@
 package com.mclegoman.loafy.config;
 
 import me.magistermaks.simple_config.SimpleConfig;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Pair;
@@ -18,8 +18,8 @@ public class LoafyConfig {
 	protected static final String id = "loafy";
 	protected static SimpleConfig config;
 	protected static ConfigProvider configProvider;
-	public static String itemId = "minecraft:bread";
-	public static ItemStack item;
+	private static String itemId = "minecraft:bread";
+	private static ItemStack item;
 	public static void init() {
 		try {
 			configProvider = new ConfigProvider();
@@ -36,5 +36,8 @@ public class LoafyConfig {
 	}
 	protected static void assign() {
 		itemId = config.getOrDefault("item", "minecraft:bread");
+	}
+	public static ItemStack getItemStack() {
+		return (item.isOf(Items.AIR) && !itemId.equalsIgnoreCase("minecraft:air")) ? Items.BREAD.getDefaultStack() : item;
 	}
 }

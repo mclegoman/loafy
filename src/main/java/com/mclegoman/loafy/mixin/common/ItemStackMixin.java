@@ -31,18 +31,18 @@ public abstract class ItemStackMixin {
 	@Shadow public abstract boolean isEmpty();
 	@Inject(at = @At("HEAD"), method = "getComponents", cancellable = true)
 	public void loafy$getComponents(CallbackInfoReturnable<ComponentMap> cir) {
-		if (!this.isOf(LoafyConfig.item.getItem())) cir.setReturnValue(!this.isEmpty() ? LoafyConfig.item.getItem().getDefaultStack().getComponents() : ComponentMap.EMPTY);
+		if (!this.isOf(LoafyConfig.getItemStack().getItem())) cir.setReturnValue(!this.isEmpty() ? LoafyConfig.getItemStack().getItem().getDefaultStack().getComponents() : ComponentMap.EMPTY);
 	}
 	@Inject(at = @At("HEAD"), method = "useOnBlock", cancellable = true)
 	public void loafy$useOnBlock(ItemUsageContext context, CallbackInfoReturnable<ActionResult> cir) {
-		if (!this.isOf(LoafyConfig.item.getItem())) cir.setReturnValue(LoafyConfig.item.getItem().useOnBlock(context));
+		if (!this.isOf(LoafyConfig.getItemStack().getItem())) cir.setReturnValue(LoafyConfig.getItemStack().getItem().useOnBlock(context));
 	}
 	@Inject(at = @At("HEAD"), method = "useOnEntity", cancellable = true)
 	public void loafy$useOnEntity(PlayerEntity user, LivingEntity entity, Hand hand, CallbackInfoReturnable<ActionResult> cir) {
-		if (!this.isOf(LoafyConfig.item.getItem())) cir.setReturnValue(LoafyConfig.item.getItem().useOnEntity((ItemStack) (Object) this, user, entity, hand));
+		if (!this.isOf(LoafyConfig.getItemStack().getItem())) cir.setReturnValue(LoafyConfig.getItemStack().getItem().useOnEntity((ItemStack) (Object) this, user, entity, hand));
 	}
 	@Inject(at = @At("HEAD"), method = "getName", cancellable = true)
 	public void loafy$getName(CallbackInfoReturnable<Text> cir) {
-		if (!this.isOf(LoafyConfig.item.getItem()) && this.getComponents().get(DataComponentTypes.CUSTOM_NAME) == null) cir.setReturnValue(LoafyConfig.item.getItem().getName());
+		if (!this.isOf(LoafyConfig.getItemStack().getItem()) && this.getComponents().get(DataComponentTypes.CUSTOM_NAME) == null) cir.setReturnValue(LoafyConfig.getItemStack().getItem().getName());
 	}
 }

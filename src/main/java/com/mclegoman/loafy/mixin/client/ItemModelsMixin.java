@@ -18,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 @Mixin(ItemModels.class)
 public abstract class ItemModelsMixin {
 	@Redirect(at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;getItem()Lnet/minecraft/item/Item;"), method = "getModel(Lnet/minecraft/item/ItemStack;)Lnet/minecraft/client/render/model/BakedModel;")
-	private Item loafy$getItem(ItemStack instance) {
-		return LoafyConfig.item.getItem();
+	private Item loafy$getItem(ItemStack itemStack) {
+		return LoafyConfig.getItemStack().getItem();
 	}
 }
