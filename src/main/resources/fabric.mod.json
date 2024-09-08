@@ -25,6 +25,5 @@
 			">=1.21",
 			"<=1.21.1"
 		]
-	},
-	"accessWidener": "loafy.accesswidener"
+	}
 }

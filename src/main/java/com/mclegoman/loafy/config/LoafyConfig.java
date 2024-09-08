@@ -19,7 +19,7 @@ public class LoafyConfig {
 	protected static SimpleConfig config;
 	protected static ConfigProvider configProvider;
 	private static String itemId = "minecraft:bread";
-	private static ItemStack item;
+	private static ItemStack item = Items.BREAD.getDefaultStack();
 	public static void init() {
 		try {
 			configProvider = new ConfigProvider();
@@ -38,6 +38,6 @@ public class LoafyConfig {
 		itemId = config.getOrDefault("item", "minecraft:bread");
 	}
 	public static ItemStack getItemStack() {
-		return (item.isOf(Items.AIR) && !itemId.equalsIgnoreCase("minecraft:air")) ? Items.BREAD.getDefaultStack() : item;
+		return ((item.getItem() == Items.AIR) && !itemId.equalsIgnoreCase("minecraft:air")) ? Items.BREAD.getDefaultStack() : item;
 	}
 }
