@@ -7,10 +7,7 @@
 	},
 	"client": [
 		"client.ItemModelsMixin",
-		"client.ItemRendererMixin",
-		"client.MinecraftClientMixin"
-	],
-	"mixins": [
+		"client.MinecraftClientMixin",
 		"client.ItemStackMixin"
 	]
 }

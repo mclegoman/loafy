@@ -1,13 +1,13 @@
 /*
     Loafy
-    Contributor(s): MCLegoMan
-    Github: https://github.com/MCLegoMan/Loafy
+    Contributor(s): dannytaylor
+    Github: https://github.com/mclegoman/loafy
     Licence: GNU LGPLv3
 */
 
 package com.mclegoman.loafy.mixin.client;
 
-import com.mclegoman.loafy.client.Loafy;
+import com.mclegoman.loafy.config.LoafyConfig;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.RunArgs;
 import org.spongepowered.asm.mixin.Mixin;
@@ -19,6 +19,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class MinecraftClientMixin {
 	@Inject(method = "<init>", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/option/GameOptions;<init>(Lnet/minecraft/client/MinecraftClient;Ljava/io/File;)V"))
 	private void loafy$init(RunArgs runArgs, CallbackInfo ci) {
-		Loafy.onInitializeClient();
+		System.out.println("*turns all your items into bread*");
+		LoafyConfig.init();
 	}
 }

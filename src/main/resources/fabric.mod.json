@@ -1,29 +1,23 @@
 {
 	"schemaVersion": 1,
-	"id": "loafy",
+	"id": "${modId}",
 	"version": "${version}",
-	"name": "Loafy",
-	"description": "This mod changes all items into BREAD.",
+	"name": "${modName}",
+	"description": "${modDescription}",
 	"authors": [
-		"MCLegoMan"
+		"${authors}"
+	],
+	"contributors": [
+		"${contributors}"
 	],
 	"contact": {
-		"homepage": "https://github.com/MCLegoMan",
-		"sources": "https://github.com/MCLegoMan/loafy"
+		"homepage": "${homepage}",
+		"issues": "${issues}",
+		"sources": "${sources}"
 	},
-	"license": [
-		"LGPL-3.0-or-later"
-	],
-	"icon": "assets/loafy/icon.png",
-	"environment": "*",
+	"license": "${license}",
+	"icon": "assets/${modId}/icon.png",
 	"mixins": [
-		"loafy.mixins.json"
-	],
-	"depends": {
-		"fabricloader": "*",
-		"minecraft": [
-			">=1.21",
-			"<=1.21.1"
-		]
-	}
+		"${modId}.mixins.json"
+	]
 }
