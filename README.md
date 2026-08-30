@@ -1,6 +1,8 @@
 # Loafy
 Changes all items into BREAD...
 
+> Moved repo to https://git.gay/dannytaylor/loafy
+
 ### Warning
 Older versions of the mod changed functionality of the items and are NOT recommended for use on long-term worlds. If you choose to ignore this warning you are doing so at your own risk, additionally you should create backups of your world.  
 **1.1.2 onwards is client-side only and won't effect your worlds.**
